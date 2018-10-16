@@ -1,6 +1,13 @@
 import { combineReducers } from 'redux';
+import AuthReducer from "./authReducer";
 import ProductReducers from "./productReducer";
+import TransaksiReducer from "./transaksiReducer";
+import ErrorReducer from "./errorReducer";
+
 
 export default combineReducers({
-    products: ProductReducers
+    auth: AuthReducer,
+    products: ProductReducers,
+    transaksi : TransaksiReducer,
+    errors : ErrorReducer
 });
