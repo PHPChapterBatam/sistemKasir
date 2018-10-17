@@ -3,7 +3,6 @@ import axios from 'axios';
 import {
     TRANSAKSI_LOADING,
     GET_TRANSAKSIS,
-    GET_TRANSAKSI,
     ADD_TRANSAKSI,
     DELETE_TRANSAKSI,
     GET_ERRORS

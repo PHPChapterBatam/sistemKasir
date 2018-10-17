@@ -5,6 +5,7 @@ import { setCurrentUser, logoutUser } from './redux/actions/AuthActions';
 import jwt_decode from 'jwt-decode';
 
 import Login from "./components/Pages/auth/Login";
+import Register from "./components/Pages/auth/Register";
 import Dashboard from "./components/Pages/Dashboard";
 import PrivateRoute from './components/utils/PrivateRoute';
 
@@ -43,6 +44,7 @@ class App extends Component {
           <Router>
             <div>
               <Route exact path="/" component={Login} />
+              <Route exact path="/register" component={Register} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>

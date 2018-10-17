@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux";
+import { TextFieldForm } from "../../utils/FormComponent";
 
-export default class ProductForm extends Component {
+ class TransaksiCreate extends Component {
   render() {
     return (
       <div className="container-fluid">
@@ -59,3 +61,4 @@ export default class ProductForm extends Component {
     )
   }
 }
+export default connect()(TransaksiCreate)
