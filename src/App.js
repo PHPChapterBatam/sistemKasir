@@ -6,7 +6,9 @@ import jwt_decode from 'jwt-decode';
 
 import Login from "./components/Pages/auth/Login";
 import Register from "./components/Pages/auth/Register";
-import Dashboard from "./components/Pages/Dashboard";
+import Dashboard from "./components/layouts/Dashboard";
+import Product from "./components/Pages/product/Product";
+import Transaksi from "./components/Pages/tranksaksi/Transaksi";
 import PrivateRoute from './components/utils/PrivateRoute';
 
 
@@ -15,8 +17,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 
-//CLEAR CACHE TOKEN
 // Check for token
+//CLEAR CACHE TOKEN
 if (localStorage.jwtToken) {
   // Set auth token header auth
   setAuthToken(localStorage.jwtToken);
@@ -46,7 +48,9 @@ class App extends Component {
               <Route exact path="/" component={Login} />
               <Route exact path="/register" component={Register} />
               <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/product" component={Product} />
+                <Route exact path="/transaksi" component={Transaksi} />
               </Switch>
             </div>
           </Router>

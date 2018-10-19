@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -13,12 +14,12 @@ class Sidebar extends Component{
                         <nav className="navbar-sidebar">
                             <ul className="list-unstyled navbar__list">
                                 <li>
-                                    <a href="chart.html">
-                                        <i className="fas fa-chart-bar" />Produk</a>
+                                    <Link to="/product">
+                                        <i className="fas fa-chart-bar" />Produk</Link>
                                 </li>
                                 <li>
-                                    <a href="table.html">
-                                        <i className="fas fa-table" />Transaksi</a>
+                                    <Link to="/transaksi">
+                                        <i className="fas fa-table" />Transaksi</Link>
                                 </li>
                             </ul>
                         </nav>

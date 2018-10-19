@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import {connect} from "react-redux";
+import Dashboard from "../../layouts/Dashboard";
 
 export default class Product extends Component {
   render() {
     return (
       <div>
+        <Dashboard />
         <div>
           <div className="page-container">
             {/* MAIN CONTENT*/}
@@ -18,11 +20,10 @@ export default class Product extends Component {
                         <table className="table table-borderless table-data3">
                           <thead>
                             <tr>
-                              <th>date</th>
-                              <th>type</th>
-                              <th>description</th>
-                              <th>status</th>
-                              <th>price</th>
+                              <th>No</th>
+                              <th>Nama Product</th>
+                              <th>Price</th>
+                              <th style={{textAlign:'center'}}>Action</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -30,8 +31,19 @@ export default class Product extends Component {
                               <td>2018-09-29 05:57</td>
                               <td>Mobile</td>
                               <td>iPhone X 64Gb Grey</td>
-                              <td className="process">Processed</td>
-                              <td>$999.00</td>
+                              <td>
+                                <button className="btn btn-primary">Edit</button>
+                                <button className="btn btn-danger">Delete</button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>2018-09-29 05:57</td>
+                              <td>Mobile</td>
+                              <td>iPhone X 64Gb Grey</td>
+                              <td>
+                                <button className="btn btn-primary">Edit</button>
+                                <button className="btn btn-danger">Delete</button>
+                              </td>
                             </tr>
                           </tbody>
                         </table>

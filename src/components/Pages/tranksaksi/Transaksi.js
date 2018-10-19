@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
+import Dashboard from "../../layouts/Dashboard";
 
 export default class Transaksi extends Component {
   render() {
     return (
       <div>
+        <Dashboard />
         <div className="page-container">
           {/* MAIN CONTENT*/}
           <div className="main-content">
