@@ -13,41 +13,37 @@ import {
 
 // Add Post
 export const addProduct = productData => async dispatch => {
-    const addProduct = await axios.post('http://lumenapi.codewell.co.id/inventory', productData)
+    const addproduct = await axios.post('http://lumenapi.codewell.co.id/API/inventory', productData)
             .then(res =>
             dispatch({
                 type: ADD_PRODUCT,
                 payload: res.data
                 })
             )
-            .catch(err =>
+            .catch(() =>
             dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data
+                type: ADD_PRODUCT,
+                payload: null
                 })
             );
-return addProduct;
+return addproduct;
 };
 
 export const getProducts = () => async dispatch => {
     dispatch(setProductLoading());
-    const getProducts = await axios.get('http://lumenapi.codewell.co.id/inventory')
-                        .then(res => dispatch({
+    const getpost = await axios.get('http://lumenapi.codewell.co.id/API/inventory')
+                    .then((response) => {
+                        dispatch({
                             type: GET_PRODUCTS,
-                            payload: res.data
-                        }))
-                        .catch(err =>
-                            dispatch({
-                                type: GET_PRODUCTS,
-                                payload: null
-                            })
-                        );
-    return getProducts;
+                            payload: response.data
+                        })
+                    })
+    return getpost;
 }
 
 export const getProduct = id => async dispatch => {
     dispatch(setProductLoading());
-    const getProduct = await axios.get(`http://lumenapi.codewell.co.id/inventory/${id}`)
+    const getproduct = await axios.get(`http://lumenapi.codewell.co.id/API/inventory/${id}`)
                         .then(res => dispatch({
                             type: GET_PRODUCT,
                             payload : res.data
@@ -56,12 +52,12 @@ export const getProduct = id => async dispatch => {
                             type: GET_PRODUCT,
                             payload: null
                         }))
-    return getProduct;
+    return getproduct;
 }
 
 export const deleteProduct = id => async dispatch => {
     dispatch(setProductLoading());
-    const deleteProduct = await axios.delete(`http://lumenapi.codewell.co.id/inventory/${id}`)
+    const deleteproduct = await axios.delete(`http://lumenapi.codewell.co.id/API/inventory/${id}`)
         .then(res => dispatch({
             type: DELETE_PRODUCT,
             payload: res.data
@@ -70,7 +66,7 @@ export const deleteProduct = id => async dispatch => {
             type: DELETE_PRODUCT,
             payload: null
         }))
-    return deleteProduct;
+    return deleteproduct;
 }
 
 

@@ -7,7 +7,7 @@ import ErrorReducer from "./errorReducer";
 
 export default combineReducers({
     auth: AuthReducer,
-    products: ProductReducers,
+    product: ProductReducers,
     transaksi : TransaksiReducer,
     errors : ErrorReducer
 });

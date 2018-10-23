@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
 import {connect} from "react-redux";
 import Dashboard from "../../layouts/Dashboard";
+import { getProducts } from "../../../redux/actions/ProductActions";
+import ProductList from "./Product-list";
+import {Link} from "react-router-dom";
 
-export default class Product extends Component {
+
+ class Product extends Component {
+
+  componentDidMount(){
+    this.props.getProducts();
+  }
   render() {
+    const { products } = this.props.product;
     return (
       <div>
         <Dashboard />
@@ -15,38 +24,12 @@ export default class Product extends Component {
                 <div className="container-fluid">
                   <div className="row">
                     <div className="col-md-12">
+                      <Link to="/product-create" className="au-btn au-btn-icon au-btn--green au-btn--small mb-3">
+                        Add Item
+                       </Link>
                       {/* DATA TABLE*/}
                       <div className="table-responsive m-b-40">
-                        <table className="table table-borderless table-data3">
-                          <thead>
-                            <tr>
-                              <th>No</th>
-                              <th>Nama Product</th>
-                              <th>Price</th>
-                              <th style={{textAlign:'center'}}>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>2018-09-29 05:57</td>
-                              <td>Mobile</td>
-                              <td>iPhone X 64Gb Grey</td>
-                              <td>
-                                <button className="btn btn-primary">Edit</button>
-                                <button className="btn btn-danger">Delete</button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>2018-09-29 05:57</td>
-                              <td>Mobile</td>
-                              <td>iPhone X 64Gb Grey</td>
-                              <td>
-                                <button className="btn btn-primary">Edit</button>
-                                <button className="btn btn-danger">Delete</button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                        <ProductList products={products} />
                       </div>
                       {/* END DATA TABLE*/}
                     </div>
@@ -62,3 +45,9 @@ export default class Product extends Component {
     )
   }
 }
+const MapStateToProps  = state => {
+  return {
+    product: state.product
+  }
+}
+export default connect(MapStateToProps, { getProducts})(Product);

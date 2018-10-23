@@ -8,6 +8,7 @@ import Login from "./components/Pages/auth/Login";
 import Register from "./components/Pages/auth/Register";
 import Dashboard from "./components/layouts/Dashboard";
 import Product from "./components/Pages/product/Product";
+import ProductCreate from "./components/Pages/product/Product-create";
 import Transaksi from "./components/Pages/tranksaksi/Transaksi";
 import PrivateRoute from './components/utils/PrivateRoute';
 
@@ -50,6 +51,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/product" component={Product} />
+                <Route exact path="/product-create" component={ProductCreate} />
                 <Route exact path="/transaksi" component={Transaksi} />
               </Switch>
             </div>
