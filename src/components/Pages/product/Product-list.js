@@ -17,7 +17,7 @@ import {Link} from "react-router-dom";
               <td>{product.item}</td>
               <td>{product.price}</td>
               <td>
-                   <Link to="/product-edit" className="btn btn-primary">Edit</Link>
+                   <Link to={`/product-edit/${product.id}`} className="btn btn-primary">Edit</Link>
                   <button className="btn btn-danger" onClick={() => this.handleClick(product.id)}>Delete</button>
               </td>
           </tr>

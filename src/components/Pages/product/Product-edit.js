@@ -8,17 +8,20 @@ import { editProduct, getProduct } from "../../../redux/actions/ProductActions";
 
 class ProductEdit extends Component {
     state = {
-        item: '',
-        price: ''
+        item: "",
+        price: ""
     }
     componentDidMount() {
         //UNTUK MENANGKAP POST SPESIFIK DENGAN ID 
         this.props.getProduct(this.props.match.params.id);
+        console.log(this.props.match.params.id)
     }
 
     componentWillReceiveProps(nextProps) {
+       
         if (nextProps.product.product) {
             const product = nextProps.product.product;
+            console.log(product);
             product.item = !_.isEmpty(product.item) ? product.item : '';
             product.price = !_.isEmpty(product.price) ? product.price : '';
             this.setState({
@@ -34,9 +37,12 @@ class ProductEdit extends Component {
             item: this.state.item,
             price: this.state.price
         }
-        this.props.addProduct(id,newItem, this.props.history);
+        this.props.editProduct(id,newItem, this.props.history);
     }
-
+    onChange =(e) => {
+        e.preventDefault();
+        this.setState({[e.target.name]: e.target.value})
+    }
   render() {
     return (
         <div>
