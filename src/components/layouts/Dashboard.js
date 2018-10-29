@@ -14,6 +14,7 @@ export default class Dashboard extends Component {
                 <HeaderMobile />
                 <Sidebar />
                 <Header />
+                
             </div>
         )
     }

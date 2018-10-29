@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Login from "./components/Pages/auth/Login";
 import Register from "./components/Pages/auth/Register";
-import Dashboard from "./components/layouts/Dashboard";
+import Landing from "./components/layouts/Landing";
 import Product from "./components/Pages/product/Product";
 import ProductCreate from "./components/Pages/product/Product-create";
 import ProductEdit from "./components/Pages/product/Product-edit";
@@ -27,7 +27,7 @@ class App extends Component {
               <Route exact path="/" component={Login} />
               <Route exact path="/register" component={Register} />
               <Switch>
-                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/dashboard" component={Landing} />
                 <Route exact path="/product" component={Product} />
                 <Route exact path="/product-create" component={ProductCreate} />
                 <Route exact path="/product-edit" component={ProductEdit} />
