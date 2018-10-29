@@ -8,27 +8,6 @@ class Login extends Component {
     state = {
         email: '',
         passwd: '',
-        errors: {}
-    }
-
-    componentDidMount() {
-        //validasi dijalankan setelah render selesai ,
-        //pengecekan jika user authenticated nya true , akan dilarikan ke dashboard
-        if (this.props.auth.isAuthenticated) {
-            this.props.history.push('/dashboard');
-        }
-    }
-
-    //vaidasi dinjalankan sebelum render
-    componentWillReceiveProps(nextProps) {
-        //jika sudah login authenticated true , maka dilarikan ke dashboard
-        if (nextProps.auth.isAuthenticated) {
-            this.props.history.push('/dashboard');
-        }
-        //jika ada error , tampilkan error
-        if (nextProps.errors) {
-            this.setState({ errors: nextProps.errors });
-        }
     }
 
 
@@ -41,10 +20,9 @@ class Login extends Component {
             email : this.state.email,
             passwd: this.state.passwd
         }
-        this.props.loginUser(userData);
+        this.props.loginUser(userData,this.props.history);
     }
   render() {
-      const { errors } = this.state;
     return (
       <div>
             <div className="page-wrapper">
@@ -63,7 +41,6 @@ class Login extends Component {
                                                 onChange={this.onChange}
                                                 placeholder="email"
                                                 type="text"
-                                                error={errors.email}
                                             />
                                         </div>
                                         <div className="form-group">
@@ -75,7 +52,6 @@ class Login extends Component {
                                                 onChange={this.onChange}
                                                 placeholder="password"
                                                 type="password"
-                                                error={errors.passwd}
                                             />
                                         </div>
                                         <button className="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
@@ -99,7 +75,6 @@ class Login extends Component {
 //membuat state menjadi props
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.errors
 });
 //bagian pertama state menjadi props
 //bagian kedua deklarasi action yang dibuat di actions creator

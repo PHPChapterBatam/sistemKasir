@@ -1,27 +1,42 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux";
-import { TextFieldForm } from "../../utils/FormComponent";
-import Dashboard from "../../layouts/Dashboard";
-import { addProduct} from "../../../redux/actions/ProductActions";
+import {connect} from "react-redux";
 import { withRouter } from 'react-router-dom';
+import Dashboard from "../../layouts/Dashboard";
+import _ from "lodash";
+import { TextFieldForm } from "../../utils/FormComponent";
+import { editProduct, getProduct } from "../../../redux/actions/ProductActions";
 
- class ProductCreate extends Component {
-     state = {
-         item: '',
-         price: ''
-     }
-     HandleSubmit = (e) => {
-         e.preventDefault();
-         const newItem = {
-             item : this.state.item,
-             price : this.state.price
-         }
-         this.props.addProduct(newItem, this.props.history);
-     }
-     onChange = (e) => {
-         e.preventDefault();
-         this.setState({[e.target.name]: e.target.value})
-     }
+class ProductEdit extends Component {
+    state = {
+        item: '',
+        price: ''
+    }
+    componentDidMount() {
+        //UNTUK MENANGKAP POST SPESIFIK DENGAN ID 
+        this.props.getProduct(this.props.match.params.id);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.product.product) {
+            const product = nextProps.product.product;
+            product.item = !_.isEmpty(product.item) ? product.item : '';
+            product.price = !_.isEmpty(product.price) ? product.price : '';
+            this.setState({
+                name: product.item,
+                price : product.price
+            })
+        }
+    }
+    HandleSubmit = (e) => {
+        e.preventDefault();
+        const {id} = this.props.match.params
+        const newItem = {
+            item: this.state.item,
+            price: this.state.price
+        }
+        this.props.addProduct(id,newItem, this.props.history);
+    }
+
   render() {
     return (
         <div>
@@ -38,7 +53,7 @@ import { withRouter } from 'react-router-dom';
                                             <div className="card-header">Product</div>
                                             <div className="card-body">
                                                 <div className="card-title">
-                                                    <h3 className="text-center title-2">Product Create</h3>
+                                                    <h3 className="text-center title-2">Product Edit</h3>
                                                 </div>
                                                 <hr />
                                                 <form onSubmit={this.HandleSubmit}>
@@ -59,7 +74,7 @@ import { withRouter } from 'react-router-dom';
 
                                                     <div>
                                                         <button id="payment-button" type="submit" className="btn btn-lg btn-info btn-block">
-                                                            Create Product
+                                                            Edit Product
                                     </button>
                                                     </div>
                                                 </form>
@@ -81,4 +96,4 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = state => ({
     product: state.product
 });
-export default connect(mapStateToProps, { addProduct })(withRouter(ProductCreate));
+export default connect(mapStateToProps,{editProduct,getProduct})(withRouter(ProductEdit))

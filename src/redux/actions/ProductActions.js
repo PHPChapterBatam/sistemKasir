@@ -3,32 +3,25 @@ import axios from 'axios';
 import {
     GET_PRODUCT,
     GET_PRODUCTS,
-    ADD_PRODUCT,
     DELETE_PRODUCT,
-    GET_ERRORS,
     PRODUCT_LOADING
 
 } from './types';
 
 
 // Add Post
-export const addProduct = productData => async dispatch => {
+export const addProduct = (productData,history) => async dispatch => {
     const addproduct = await axios.post('http://lumenapi.codewell.co.id/API/inventory', productData)
-            .then(res =>
-            dispatch({
-                type: ADD_PRODUCT,
-                payload: res.data
-                })
-            )
-            .catch(() =>
-            dispatch({
-                type: ADD_PRODUCT,
-                payload: null
-                })
-            );
-return addproduct;
-};
+            .then(res => history.push('/product'));
 
+    return addproduct;
+};
+export const editProduct = (id,productData, history) => async dispatch => {
+    const addproduct = await axios.put(`http://lumenapi.codewell.co.id/API/inventory/${id}`, productData)
+        .then(res => history.push('/product'));
+
+    return addproduct;
+};
 export const getProducts = () => async dispatch => {
     dispatch(setProductLoading());
     const getpost = await axios.get('http://lumenapi.codewell.co.id/API/inventory')
@@ -60,12 +53,9 @@ export const deleteProduct = id => async dispatch => {
     const deleteproduct = await axios.delete(`http://lumenapi.codewell.co.id/API/inventory/${id}`)
         .then(res => dispatch({
             type: DELETE_PRODUCT,
-            payload: res.data
+            payload: id
         }))
-        .catch(err => dispatch({
-            type: DELETE_PRODUCT,
-            payload: null
-        }))
+        
     return deleteproduct;
 }
 

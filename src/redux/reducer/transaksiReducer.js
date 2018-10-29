@@ -2,7 +2,6 @@ import {
     TRANSAKSI_LOADING,
     GET_TRANSAKSIS,
     GET_TRANSAKSI,
-    ADD_TRANSAKSI,
     DELETE_TRANSAKSI,
     
 } from '../actions/types';
@@ -33,11 +32,6 @@ export default function (state = initialState, action) {
                 ...state,
                 transaksi: action.payload,
                 loading: false
-            };
-        case ADD_TRANSAKSI:
-            return {
-                ...state,
-                transaksis: [action.payload, ...state.transaksis]
             };
         case DELETE_TRANSAKSI:
             return {

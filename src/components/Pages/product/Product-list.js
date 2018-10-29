@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
+import {connect} from "react-redux";
+import { deleteProduct} from "../../../redux/actions/ProductActions";
+import {Link} from "react-router-dom";
 
  class ProductList extends Component {
+
+    handleClick = (id) => {
+        this.props.deleteProduct(id)
+    }
+
+
   render() {
        const products = this.props.products.map(product => (
           <tr key={product.id}>
@@ -8,8 +17,8 @@ import React, { Component } from 'react'
               <td>{product.item}</td>
               <td>{product.price}</td>
               <td>
-                  <button className="btn btn-primary">Edit</button>
-                  <button className="btn btn-danger">Delete</button>
+                   <Link to="/product-edit" className="btn btn-primary">Edit</Link>
+                  <button className="btn btn-danger" onClick={() => this.handleClick(product.id)}>Delete</button>
               </td>
           </tr>
        ))
@@ -33,4 +42,4 @@ import React, { Component } from 'react'
   }
 }
 
-export default ProductList;
+export default connect(null, { deleteProduct })(ProductList);

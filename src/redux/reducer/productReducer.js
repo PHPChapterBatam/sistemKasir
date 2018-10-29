@@ -2,7 +2,6 @@
 import {
     GET_PRODUCT,
     GET_PRODUCTS,
-    ADD_PRODUCT,
     DELETE_PRODUCT,
     PRODUCT_LOADING
 
@@ -33,15 +32,10 @@ export default function (state = initialState, action) {
                 product: action.payload,
                 loading: false
             };
-        case ADD_PRODUCT:
-            return {
-                ...state,
-                products: [action.payload, ...state.products]
-            };
         case DELETE_PRODUCT:
             return {
                 ...state,
-                products: state.products.filter(product => product._id !== action.payload)
+                products: state.products.filter(product => product.id !== action.payload)
             };
         default:
             return state;
